@@ -1,0 +1,6 @@
+.pio/
+__pycache__/
+*.pyc
+.vscode/
+examples/**/sdkconfig.*
+examples/**/dependencies.lock

@@ -1,0 +1,7 @@
+# Licencias y procedencia
+
+El código propio RCDEV (ejemplo, adaptación Python, módulo CMake, tests e integración) usa MIT: `LICENSE`.
+
+`platform.py`, `builder/` y `boards/esp32doit-devkit-v1.json` proceden de PlatformIO Espressif32 **7.1.3**, tag `v7.1.3`, commit `e5ded43181bd95b62652826117221e511bec8bbc`, https://github.com/platformio/platform-espressif32. Su licencia Apache-2.0 está en `LICENSE.platformio`; se conservan encabezados originales. `platform.json` deriva del manifiesto del mismo upstream. Cambios RCDEV: nombre/metadatos, validación de placa/frameworks, pins de frameworks, argumentos CMake y exclusión de una segunda compilación BluetoothSerial por LDF. El resto del builder se conserva para usar el mecanismo de paquetes oficial, incluido Windows.
+
+No se distribuye ESP-IDF ni Arduino completos. PlatformIO descarga sus paquetes y licencias originales. Arduino-ESP32 2.0.17 incluye BluetoothSerial bajo LGPL-2.1-or-later; ESP-IDF 4.4.7 y sus componentes conservan las licencias que acompañan sus fuentes (incluidas bibliotecas de terceros). La adaptación genera durante el build una copia de BluetoothSerial.cpp **manteniendo su encabezado/licencia**, sin editar el paquete instalado. El código resultante no se relicencia MIT. Al redistribuir firmware/binarios, revisar las obligaciones de todas esas licencias (incluida LGPL y posible relink); MIT de RCDEV no las elimina. Este repositorio no publica binarios de firmware ni SDK.
