@@ -1,6 +1,6 @@
 # 🤖 RCDEV (Robótica Competitiva Developer)
 
-Plataforma de desarrollo para **PlatformIO** orientada a robótica competitiva sobre placas **ESP32** (DOIT DevKit V1).
+Plataforma de desarrollo para **PlatformIO** orientada a robótica competitiva sobre **ESP32 DOIT DevKit V1**, con **Arduino + ESP-IDF** y servidor **Bluetooth Classic SPP**. El soporte documentado se limita a esta placa, combinación de frameworks y modo servidor; no incluye otras variantes ESP32, BLE ni modo SPP maestro.
 
 [![PlatformIO](https://img.shields.io/badge/PlatformIO-Core%206%2B-orange.svg)](https://platformio.org/)
 [![Framework](https://img.shields.io/badge/Framework-Arduino%202.0.17%20%2B%20ESP--IDF%204.4.7-blue.svg)](https://github.com/espressif/arduino-esp32)
@@ -25,8 +25,8 @@ RCDEV reconstruye el entorno con **SSP desactivado** a nivel de SDK y adapta int
 
 ## 💻 Compatibilidad
 
-* 🪟 **Windows 11**: Compatible con VS Code + extensión **PlatformIO IDE** (o PowerShell / CMD).
-* 🐧 **Linux & NixOS**: Compatible desde terminal (`pio run`) o VS Code.
+* 🪟 **Windows 11**: Validado manualmente por el mantenedor en placa real: emparejamiento con PIN correcto, rechazo del PIN incorrecto y comunicación SPP con eco.
+* 🐧 **Linux & NixOS**: Uso desde terminal (`pio run`) o VS Code con PlatformIO; esto no implica validación de emparejamiento en hardware.
 
 ---
 
@@ -41,7 +41,7 @@ Para usar RCDEV en tu proyecto, no necesitas clonar este repositorio ni escribir
 default_envs = rcdev
 
 [env:rcdev]
-platform = https://github.com/MizardB/DevRabit/archive/refs/heads/main.zip
+platform = https://github.com/MizardB/RCDEV/archive/refs/tags/v0.1.0.zip
 board = esp32doit-devkit-v1
 framework = arduino, espidf
 monitor_speed = 115200
@@ -120,9 +120,10 @@ pio device monitor --baud 115200
 
 ## ⚠️ Reglas importantes del PIN
 
-* **Exactamente 4 dígitos decimales:** Admite cualquier combinación de 4 números (como `"1234"`, `"9876"` o `"0000"`). Cualquier longitud distinta o carácter no numérico provocará que `setPin()` retorne `false` y aborte la inicialización.
+* **Exactamente 4 dígitos decimales:** Admite cualquier combinación de 4 números (como `"1234"`, `"9876"` o `"0000"`). Cualquier longitud distinta o carácter no numérico hace que `setPin()` retorne `false`; el ejemplo comprueba ese resultado y no inicia Bluetooth si falla.
 * **Orden de llamada:** `BT.setPin()` debe ejecutarse **antes** de `BT.begin()`.
-* **Dispositivos previamente vinculados:** Si cambias el PIN en el firmware, recuerda **desvincular/olvidar el dispositivo** en tu teléfono o PC antes de volver a conectar, ya que los sistemas operativos guardan la clave anterior en caché.
+* **Seguridad:** El PIN legacy de 4 dígitos busca compatibilidad, no ofrece seguridad fuerte.
+* **Dispositivos previamente vinculados:** Cambiar el PIN no necesariamente revoca los vínculos guardados. **Desvincula/olvida el dispositivo** en tu teléfono o PC antes de volver a emparejarlo con el PIN nuevo.
 
 ---
 

@@ -1,23 +1,22 @@
 {
   "name": "rcdev",
   "title": "RCDEV",
-  "description": "Robótica Competitiva Developer - ESP32 platform with Arduino + ESP-IDF and authenticated legacy Bluetooth SPP",
-  "homepage": "https://github.com/MizardB/DevRabit",
+  "description": "Robótica Competitiva Developer - ESP32 DOIT DevKit V1 with Arduino + ESP-IDF and authenticated legacy Bluetooth Classic SPP server",
+  "homepage": "https://github.com/MizardB/RCDEV",
   "license": "MIT AND Apache-2.0",
   "keywords": [
     "dev-platform",
     "robotics",
     "Wi-Fi",
     "Bluetooth",
-    "Xtensa",
-    "RISC-V"
+    "Xtensa"
   ],
   "engines": {
     "platformio": "^6"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MizardB/DevRabit.git"
+    "url": "https://github.com/MizardB/RCDEV.git"
   },
   "version": "0.1.0",
   "frameworks": {
